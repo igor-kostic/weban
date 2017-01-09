@@ -1,0 +1,63 @@
+<!doctype html>
+
+<html ng-app="webanApp">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Web Analyser</title>
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.10/angular.min.js"></script>
+	<script src="app.js"></script>
+</head>
+<body>
+	<div class="jumbotron">
+		<div class="text-left" >
+			<p>Web-Application for Analyzing Web-Sites </p>
+		</div>
+	</div>
+	<div class="container" >
+		<div ng-controller="webanController" >
+
+			<form name="check_form"
+				  novalidate
+				  style="margin-bottom:15px;"
+				  ng-submit="checkURL()" >
+
+					<div class="form-group" >
+						<label>URL:</label>
+						<input type="text"
+							   placeholder="URL"
+							   name="url"
+							   ng-model="url"
+							   class="form-control"
+							   required />
+					</div>
+					<div class="form-actions" >
+						<button id="btnCheck"
+								type="submit"
+								class="btn btn-primary" >
+							<span ng-hide="loading">Check</span>
+							<span ng-show="loading" class='glyphicon-left glyphicon glyphicon-refresh spinning'></span>
+							<span ng-show="loading">Please wait...</span>
+						</button>
+					</div>
+			</form>
+
+			<div class="panel panel-default" ng-show="msgs.length > 0" >
+				<div class="panel-body">
+					<div ng-repeat="msg in msgs" class="row" >
+						<div class="col-md-2" >{{msg.header}}</div>
+						<div class="col-md-10" >{{msg.text}}</div>
+					</div>
+					<br>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
