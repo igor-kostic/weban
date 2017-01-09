@@ -4,23 +4,13 @@ module.exports = function(grunt) {
 
     // JS TASKS ================================================================
     jshint: {
-      all: ['public/src/js/**/*.js'] 
+      all: ['public/src/**/*.js'] 
     },
 
     uglify: {
       build: {
         files: {
-          'public/dist/js/app.min.js': ['public/src/js/**/*.js', 'public/src/js/*.js']
-        }
-      }
-    },
-
-    // CSS TASKS ===============================================================
-
-    cssmin: {
-      build: {
-        files: {
-          'public/dist/css/style.min.css': 'public/dist/css/style.css'
+          'public/dist/js/app.min.js': ['public/src/**/*.js', 'public/*.js']
         }
       }
     },
@@ -28,7 +18,7 @@ module.exports = function(grunt) {
     // COOL TASKS ==============================================================
     watch: {
       js: {
-        files: ['public/src/js/**/*.js'],
+        files: ['public/src/**/*.js'],
         tasks: ['jshint', 'uglify']
       }
     },
@@ -39,12 +29,12 @@ module.exports = function(grunt) {
       }
     },
 
-/*    concurrent: {
+    concurrent: {
       options: {
         logConcurrentOutput: true
       },
       tasks: ['nodemon', 'watch']
-    }*/
+    }
 
   });
 
@@ -57,10 +47,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
 
   grunt.registerTask('default', [
-	'cssmin', 
 	'jshint', 
 	'uglify', 
-	'nodemon'
+	'concurrent'
 	]);
 
 };
